@@ -1,10 +1,10 @@
-package com.example.addon.modules;
+package com.tfoe.tfoeutil.modulemanager;
 
-import com.example.addon.ExampleAddon;
+import com.tfoe.tfoeutil.Addib;
 import net.anubis.client.module.ClientModule;
 
-public final class ExampleModule extends ClientModule {
-    public ExampleModule() {
-        super("Example Module", "Does nothing, just turns on and off.", ExampleAddon.CATEGORY);
+public final class ModuleManager extends ClientModule {
+    public CreateModules() {
+        super("EasyTP", "Adds a keybind to /RTP or /HOME", Addon.CATEGORY);
     }
 }
