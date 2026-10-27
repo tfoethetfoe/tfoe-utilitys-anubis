@@ -1,5 +1,5 @@
 
-package com.tfoe.tfoeutil.addon.modules.EasyTP;
+package com.tfoe.tfoeutil.addon.modules;
 
 import com.tfoe.tfoeutil.addon.Addon;
 import net.anubis.client.event.Stage;
@@ -9,7 +9,7 @@ import net.anubis.client.module.ClientModule;
 import net.anubis.client.module.setting.KeySetting;
 import net.anubis.client.module.setting.NumberSetting;
 import net.anubis.client.input.ModuleKeybinds;
-import net.minecraft.class_310;
+import net.minecraft.client.MinecraftClient;
 
 public final class EasyTP extends ClientModule {
 
@@ -62,14 +62,14 @@ public final class EasyTP extends ClientModule {
             return;
         }
 
-        class_310 mc = class_310.method_1551();
+        MinecraftClient mc = MinecraftClient.getInstance();
 
-        if (mc.field_1755 != null || mc.field_1724 == null) {
-            return;
-        }
+        if (mc.currentScreen != null || mc.player == null) {
+    return;
+}
 
         if (key == this.homeKey.value()) {
-            sendCommand("home " + Math.round(this.homeNumber.value()));
+           sendCommand("home " + Math.round(this.homeNumber.value()[0]));
         }
 
         if (key == this.rtpKey.value()) {
@@ -78,12 +78,10 @@ public final class EasyTP extends ClientModule {
     }
 
     private void sendCommand(String command) {
-        class_310 mc = class_310.method_1551();
+    MinecraftClient mc = MinecraftClient.getInstance();
 
-        if (mc.field_1724 == null) {
-            return;
-        }
-
-        mc.field_1724.field_3944.method_45730(command);
+    if (mc.player != null && mc.getNetworkHandler() != null) {
+        mc.getNetworkHandler().sendChatCommand(command);
     }
+}
 }

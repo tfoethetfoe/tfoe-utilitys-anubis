@@ -1,5 +1,5 @@
 
-package com.tfoe.tfoeutil.addon.Addon;
+package com.tfoe.tfoeutil.addon;
 
 import com.tfoe.tfoeutil.addon.modules.ModuleManager;
 import net.anubis.client.addon.AnubisAddon;
