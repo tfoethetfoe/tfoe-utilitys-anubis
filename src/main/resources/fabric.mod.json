@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "anubis-addon-template",
+  "id": "tfoeutil",
   "version": "${version}",
-  "name": "Anubis Addon Template",
+  "name": "TFOE's Utilitys Anubis",
   "description": "Empty addon template for Anubis, build yours on top of it",
   "authors": [
     "Your name"
@@ -10,7 +10,7 @@
   "environment": "client",
   "entrypoints": {
     "anubis": [
-      "com.example.addon.ExampleAddon"
+      "com.tfoe.tfoeutil.addon.Addon"
     ]
   },
   "mixins": [
