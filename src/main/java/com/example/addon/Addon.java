@@ -1,14 +1,12 @@
+
 package com.tfoe.tfoeutil.addon.Addon;
 
+import com.tfoe.tfoeutil.addon.modules.ModuleManager;
 import net.anubis.client.addon.AnubisAddon;
-import net.anubis.client.module.ClientModule;
 import net.anubis.client.module.ModuleCategory;
-import net.anubis.client.module.ModuleRegistry;
-import org.reflections.Reflections;
-
-import java.lang.reflect.Modifier;
 
 public final class Addon extends AnubisAddon {
+
     public static ModuleCategory CATEGORY;
 
     @Override
@@ -21,28 +19,7 @@ public final class Addon extends AnubisAddon {
 
     @Override
     public void onInitialize() {
-        Reflections reflections =
-            new Reflections("com.tfoe.tfoeutil.modulemanager");
-
-        for (Class<? extends ClientModule> clazz :
-                reflections.getSubTypesOf(ClientModule.class)) {
-
-            if (Modifier.isAbstract(clazz.getModifiers())
-                    || clazz.isInterface()) {
-                continue;
-            }
-
-            try {
-                ClientModule module =
-                    clazz.getDeclaredConstructor().newInstance();
-
-                ModuleRegistry.add(module);
-            } catch (ReflectiveOperationException e) {
-                throw new IllegalStateException(
-                    "Could not load module: " + clazz.getName(), e
-                );
-            }
-        }
+        ModuleManager.registerAll();
     }
 
     @Override
@@ -52,6 +29,9 @@ public final class Addon extends AnubisAddon {
 
     @Override
     public GithubRepo getRepo() {
-        return new GithubRepo("tfoethetfoe", "tfoe-utilitys-anubis");
+        return new GithubRepo(
+            "tfoethetfoe",
+            "tfoe-utilitys-anubis"
+        );
     }
 }
