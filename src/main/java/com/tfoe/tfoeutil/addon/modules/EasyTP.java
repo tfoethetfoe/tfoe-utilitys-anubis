@@ -9,7 +9,7 @@ import net.anubis.client.module.ClientModule;
 import net.anubis.client.module.setting.KeySetting;
 import net.anubis.client.module.setting.NumberSetting;
 import net.anubis.client.input.ModuleKeybinds;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public final class EasyTP extends ClientModule {
 
