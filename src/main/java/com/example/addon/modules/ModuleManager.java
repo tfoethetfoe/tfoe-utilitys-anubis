@@ -1,0 +1,10 @@
+package com.tfoe.tfoeutil.modulemanager;
+
+import com.tfoe.tfoeutil.addon.Addon;
+import net.anubis.client.module.ClientModule;
+
+public final class ModuleManager extends ClientModule {
+    public ModuleManager() {
+        super("EasyTP", "Adds a keybind to /RTP or /HOME", Addon.CATEGORY);
+    }
+}
