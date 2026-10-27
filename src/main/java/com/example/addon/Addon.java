@@ -1,6 +1,6 @@
-package com.example.addon;
+package com.tfoe.tfoeutil.addon;
 
-import com.example.addon.modules.ExampleModule;
+import com.tfoe.tfoeutil.addon.modules.ModuleManager;
 import net.anubis.client.addon.AnubisAddon;
 import net.anubis.client.module.ModuleCategory;
 import net.anubis.client.module.ModuleRegistry;
@@ -16,7 +16,7 @@ public final class ExampleAddon extends AnubisAddon {
 
     @Override
     public void onInitialize() {
-        ModuleRegistry.add(new EasyTP());
+        ModuleRegistry.add(new ModuleManager());
     }
 
     @Override
