@@ -1,5 +1,5 @@
 
-package com.tfoe.tfoeutil.addon.modules;
+package com.tfoe.tfoeutil.addon.modules.ModuleManager;
 
 import net.anubis.client.module.ClientModule;
 import net.anubis.client.module.ModuleRegistry;
