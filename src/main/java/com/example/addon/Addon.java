@@ -11,21 +11,21 @@ public final class ExampleAddon extends AnubisAddon {
 
     @Override
     public void onRegisterCategories() {
-        CATEGORY = ModuleCategory.register("EXAMPLE", "Example");
+        CATEGORY = ModuleCategory.register("TFOEUTIL", "TFOE's Utilitys");
     }
 
     @Override
     public void onInitialize() {
-        ModuleRegistry.add(new ExampleModule());
+        ModuleRegistry.add(new EasyTP());
     }
 
     @Override
     public String getPackage() {
-        return "com.example.addon";
+        return "com.tfoe.tfoeutil";
     }
 
     @Override
     public GithubRepo getRepo() {
-        return new GithubRepo("your-name", "anubis-addon-template");
+        return new GithubRepo("tfoethetfoe", "tfoe-utilitys-anubis");
     }
 }
