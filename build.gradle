@@ -1,30 +1,32 @@
 plugins {
-    id 'fabric-loom' version '1.14-SNAPSHOT'
-    id 'maven-publish'
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 }
 
 version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+	archivesName = project.archives_base_name
 }
 
 repositories {
-    mavenCentral()
-    maven {
-        url = 'https://maven.fabricmc.net/'
-    }
+	// anubis isnt on a public maven, run `gradlew publishToMavenLocal` in the anubis repo and it shows up here
+	mavenLocal {
+		content { includeGroup "net.anubis" }
+	}
+	// libs anubis needs (imgui, jna etc), runClient loads anubis with these
+	mavenCentral()
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	implementation("org.reflections:reflections:0.10.2")
 
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modCompileOnly files("libs/anubis-client.jar")
+	modCompileOnly files("libs/anubis.jar")
 }
-
 
 processResources {
 	def version = project.version

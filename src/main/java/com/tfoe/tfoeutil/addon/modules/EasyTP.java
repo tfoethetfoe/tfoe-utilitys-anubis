@@ -36,7 +36,7 @@ public final class EasyTP extends ClientModule {
         super(
                 "easytp",
                 "EasyTP",
-                "Adds two keybinds that let you use /HOME and /RTP easier.",
+                "Adds two keybinds for /home and /rtp.",
                 Addon.CATEGORY
         );
     }
@@ -62,14 +62,14 @@ public final class EasyTP extends ClientModule {
             return;
         }
 
-        MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
 
-        if (mc.currentScreen != null || mc.player == null) {
-    return;
-}
+        if (mc.screen != null || mc.player == null) {
+            return;
+        }
 
         if (key == this.homeKey.value()) {
-           sendCommand("home " + Math.round(this.homeNumber.value()[0]));
+            sendCommand("home " + Math.round(this.homeNumber.value()[0]));
         }
 
         if (key == this.rtpKey.value()) {
@@ -78,10 +78,10 @@ public final class EasyTP extends ClientModule {
     }
 
     private void sendCommand(String command) {
-    MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
 
-    if (mc.player != null && mc.getNetworkHandler() != null) {
-        mc.getNetworkHandler().sendChatCommand(command);
+        if (mc.player != null && mc.getConnection() != null) {
+            mc.getConnection().sendCommand(command);
+        }
     }
-}
 }
