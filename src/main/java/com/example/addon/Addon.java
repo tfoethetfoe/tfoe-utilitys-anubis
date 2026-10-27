@@ -1,22 +1,48 @@
 package com.tfoe.tfoeutil.addon;
 
-import com.tfoe.tfoeutil.addon.modules.ModuleManager;
 import net.anubis.client.addon.AnubisAddon;
+import net.anubis.client.module.ClientModule;
 import net.anubis.client.module.ModuleCategory;
 import net.anubis.client.module.ModuleRegistry;
+import org.reflections.Reflections;
 
-public final class ExampleAddon extends AnubisAddon {
-    // clickgui category for the addon, gets set in onRegisterCategories (that runs before any module is made)
+import java.lang.reflect.Modifier;
+
+public final class Addon extends AnubisAddon {
     public static ModuleCategory CATEGORY;
 
     @Override
     public void onRegisterCategories() {
-        CATEGORY = ModuleCategory.register("TFOEUTIL", "TFOE's Utilitys");
+        CATEGORY = ModuleCategory.register(
+            "TFOEUTIL",
+            "TFOE's Utilitys"
+        );
     }
 
     @Override
     public void onInitialize() {
-        ModuleRegistry.add(new ModuleManager());
+        Reflections reflections =
+            new Reflections("com.tfoe.tfoeutil.modulemanager");
+
+        for (Class<? extends ClientModule> clazz :
+                reflections.getSubTypesOf(ClientModule.class)) {
+
+            if (Modifier.isAbstract(clazz.getModifiers())
+                    || clazz.isInterface()) {
+                continue;
+            }
+
+            try {
+                ClientModule module =
+                    clazz.getDeclaredConstructor().newInstance();
+
+                ModuleRegistry.add(module);
+            } catch (ReflectiveOperationException e) {
+                throw new IllegalStateException(
+                    "Could not load module: " + clazz.getName(), e
+                );
+            }
+        }
     }
 
     @Override
