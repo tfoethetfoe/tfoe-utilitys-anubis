@@ -1,6 +1,6 @@
 package com.tfoe.tfoeutil.modulemanager;
 
-import com.tfoe.tfoeutil.Addib;
+import com.tfoe.tfoeutil.Addon;
 import net.anubis.client.module.ClientModule;
 
 public final class ModuleManager extends ClientModule {
